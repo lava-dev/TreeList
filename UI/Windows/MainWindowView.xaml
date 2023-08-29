@@ -1,0 +1,74 @@
+﻿<Window x:Class="WpfApp1.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="800" Width="1200"
+        x:Name="RootWindow"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20"
+          x:Name="RootContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+                Orientation="Horizontal">
+            <Button Content="Generate Data"
+                    Click="GenerateData_Click"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+
+            <Button Margin="10,0,0,0"
+                    Content="Calculate for Cell"
+                    Click="CalculateForCell_Click"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+
+            <ToggleButton
+                    Margin="10,0,0,0"
+                    x:Name="ExpandCollapseButton"
+                    Content="Expand All"
+                    Checked="ExpandAll_Checked"
+                    Unchecked="CollapseAll_Unchecked"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+
+            <ToggleButton
+                    Margin="10,0,0,0"
+                    x:Name="ExpandCollapseNextButton"
+                    Content="Expand Next (index = 1)"
+                    Checked="ExpandNext_Checked"
+                    Unchecked="CollapseNext_Unchecked"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"/>
+        </StackPanel>
+
+        <TextBlock
+                Margin="10,0"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Text="{Binding StatusInfo}"
+                HorizontalAlignment="Left"
+                Grid.Column="1"
+                Grid.RowSpan="3"/>
+
+        <ListView
+            x:Name="TreeListControl"
+            Grid.Row="2"
+            ItemsSource="{Binding RowCollectionView}"
+            SizeChanged="TreeListControl_SizeChanged"
+            VerticalAlignment="Top" 
+            Style="{StaticResource PermissionsListViewStyle}"/>
+
+    </Grid>
+</Window>
